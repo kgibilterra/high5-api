@@ -26,4 +26,10 @@ var routes = Routes{
 		"/highFive/{highFiveId}",
 		GetHighFive,
 	},
+	Route{
+		"PostHighFive",
+		"POST",
+		"/highFive",
+		PostHighFive,
+	},
 }
