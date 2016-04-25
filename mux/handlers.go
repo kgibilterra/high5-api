@@ -26,7 +26,7 @@ func GetHighFive(w http.ResponseWriter, r *http.Request) {
 	i, _ := strconv.Atoi(highFiveId)
 	h := RepoFindHighFive(i)
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 	if err := json.NewEncoder(w).Encode(h); err != nil {
 		panic(err)
 	}
