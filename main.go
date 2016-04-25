@@ -15,9 +15,6 @@ func main() {
 	// }
 	// defer db.Close()
 
-	log.Printf("Testing?")
 	r := mux.NewRouter()
-	// r.HandleFunc("/highFives", high5.GetHighFives.Methods("GET"))
-	// r.HandleFunc("/highFives/{highFiveId}", high5.GetHighFive.Methods("GET"))
 	log.Fatal(http.ListenAndServe(":8787", r))
 }

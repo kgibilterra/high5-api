@@ -5,10 +5,10 @@ import (
 	"github.com/gorilla/mux"
 
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 )
 
 // GetHigh5 returns all of the High 5's in the database.
@@ -23,7 +23,13 @@ func GetHighFives(w http.ResponseWriter, r *http.Request) {
 func GetHighFive(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	highFiveId := vars["highFiveId"]
-	fmt.Fprintln(w, "High Five: ", highFiveId)
+	i, _ := strconv.Atoi(highFiveId)
+	h := RepoFindHighFive(i)
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusCreated)
+	if err := json.NewEncoder(w).Encode(h); err != nil {
+		panic(err)
+	}
 }
 
 func PostHighFive(w http.ResponseWriter, r *http.Request) {

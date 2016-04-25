@@ -17,7 +17,7 @@ var routes = Routes{
 	Route{
 		"GetHighFives",
 		"GET",
-		"/highFives",
+		"/highFive",
 		GetHighFives,
 	},
 	Route{
