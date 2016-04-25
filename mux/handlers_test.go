@@ -38,8 +38,24 @@ func TestPostHighFive(t *testing.T) {
 	}
 }
 
+func TestPostHighFiveError(t *testing.T) {
+	//highFive := `{"sender": "Dennis", "receiver": "Kaylyn2", "message": "Thanks"}`
+	highFiveUrl = fmt.Sprintf("%s/highFive", server.URL)
+	reader = strings.NewReader("")
+	request, err := http.NewRequest("POST", highFiveUrl, reader)
+	if err != nil {
+		t.Error(err)
+	}
+
+	w := httptest.NewRecorder()
+	PostHighFive(w, request)
+	if w.Code != 422 {
+		t.Error("Success expected: %d", w.Code)
+	}
+}
+
 func TestGetHighFives(t *testing.T) {
-	highFiveUrl = fmt.Sprintf("%s/highFives", server.URL)
+	highFiveUrl = fmt.Sprintf("%s/highFive", server.URL)
 	reader = strings.NewReader("")
 	request, err := http.NewRequest("GET", highFiveUrl, reader)
 	if err != nil {
@@ -50,5 +66,20 @@ func TestGetHighFives(t *testing.T) {
 	GetHighFives(w, request)
 	if w.Code != 200 {
 		t.Error("Success expected: %d", w.Code)
+	}
+}
+
+func TestGetHighFive(t *testing.T) {
+	highFiveUrl = fmt.Sprintf("%s/highFive/1", server.URL)
+	reader = strings.NewReader("")
+	request, err := http.NewRequest("GET", highFiveUrl, reader)
+	if err != nil {
+		t.Error(err)
+	}
+
+	w := httptest.NewRecorder()
+	GetHighFive(w, request)
+	if w.Code != 200 {
+		t.Error("Success expected: ", w.Code)
 	}
 }
