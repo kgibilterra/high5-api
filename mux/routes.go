@@ -32,4 +32,10 @@ var routes = Routes{
 		"/highFive",
 		PostHighFive,
 	},
+	Route{
+		"DeleteHighFive",
+		"DELETE",
+		"/highFive/{highFiveId}",
+		DeleteHighFive,
+	},
 }

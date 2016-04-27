@@ -56,3 +56,14 @@ func PostHighFive(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 }
+
+func DeleteHighFive(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	highFiveId := vars["highFiveId"]
+	i, _ := strconv.Atoi(highFiveId)
+	err := RepoDestroyHighFive(i)
+	if err != nil {
+		panic(err)
+	}
+	w.WriteHeader(http.StatusNoContent)
+}
