@@ -1,6 +1,9 @@
 package mux
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 var currentId int
 var highFives HighFives
@@ -24,6 +27,7 @@ func RepoFindHighFive(id int) HighFive {
 func RepoCreateHighFive(h HighFive) HighFive {
 	currentId += 1
 	h.Id = currentId
+	h.Date = time.Now()
 	highFives = append(highFives, h)
 	return h
 }
