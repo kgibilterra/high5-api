@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// HighFives are used to track who is receiving gratitude from others.
 type HighFive struct {
 	Id       int       `json:"id"`
 	Sender   string    `json:"sender"`

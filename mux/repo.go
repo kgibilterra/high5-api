@@ -14,6 +14,7 @@ func init() {
 	RepoCreateHighFive(HighFive{Sender: "George", Receiver: "Mason", Message: "You were helpful"})
 }
 
+// RepoFindHighFive searches by index for the HighFive to return.
 func RepoFindHighFive(id int) HighFive {
 	for _, h := range highFives {
 		if h.Id == id {
@@ -24,6 +25,7 @@ func RepoFindHighFive(id int) HighFive {
 	return HighFive{}
 }
 
+// RepoCreateHighFive creates a new HighFive.
 func RepoCreateHighFive(h HighFive) HighFive {
 	currentId += 1
 	h.Id = currentId
@@ -32,6 +34,7 @@ func RepoCreateHighFive(h HighFive) HighFive {
 	return h
 }
 
+// RepoDestroyHighFive deletes a HighFive by id.
 func RepoDestroyHighFive(id int) error {
 	for i, h := range highFives {
 		if h.Id == id {
