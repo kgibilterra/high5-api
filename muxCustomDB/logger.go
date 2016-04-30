@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+// Logger displays the REST verb, endpoint, handler name, and response time
+// for the request.
 func Logger(inner http.Handler, name string) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()

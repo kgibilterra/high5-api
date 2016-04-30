@@ -25,6 +25,7 @@ func init() {
 	defer server.Close()
 }
 
+// TestPostHighFive tests creating a new HighFive.
 func TestPostHighFive(t *testing.T) {
 	highFive := `{"sender": "Dennis", "receiver": "Kaylyn2", "message": "Thanks"}`
 	highFiveUrl = fmt.Sprintf("%s/highFive", server.URL)
@@ -41,6 +42,7 @@ func TestPostHighFive(t *testing.T) {
 	}
 }
 
+// TestPostHighFiveError tests posting an incomplete HighFive.
 func TestPostHighFiveError(t *testing.T) {
 	//highFive := `{"sender": "Dennis", "receiver": "Kaylyn2", "message": "Thanks"}`
 	highFiveUrl = fmt.Sprintf("%s/highFive", server.URL)
@@ -57,6 +59,7 @@ func TestPostHighFiveError(t *testing.T) {
 	}
 }
 
+// TestGetHighFives tests the response of all high fives.
 func TestGetHighFives(t *testing.T) {
 	highFiveUrl = fmt.Sprintf("%s/highFive", server.URL)
 	reader = strings.NewReader("")
@@ -72,6 +75,9 @@ func TestGetHighFives(t *testing.T) {
 	}
 }
 
+// TestGetHighFive tests to find a specific high five.
+// A new mux route handler is created to save the variables through the
+// entire gorilla lifecycle.
 func TestGetHighFive(t *testing.T) {
 	r, _ := http.NewRequest("GET", "http://localhost:8787/highFive/1", nil)
 	w := httptest.NewRecorder()
@@ -85,6 +91,9 @@ func TestGetHighFive(t *testing.T) {
 	}
 }
 
+// TestDeleteHighFive tests to delete a specific high five.
+// A new mux route handler is created to save the variables through the
+// entire gorilla lifecycle.
 func TestDeleteHighFive(t *testing.T) {
 	r, _ := http.NewRequest("DELETE", "http://localhost:8787/highFive/1", nil)
 	w := httptest.NewRecorder()
