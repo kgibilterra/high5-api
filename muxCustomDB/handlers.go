@@ -7,7 +7,6 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strconv"
 )
@@ -64,7 +63,6 @@ func DeleteHighFive(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	highFiveId := vars["highFiveId"]
 	i, _ := strconv.Atoi(highFiveId)
-	log.Println("wtf %d", i)
 	err := RepoDestroyHighFive(i)
 	if err != nil {
 		panic(err)

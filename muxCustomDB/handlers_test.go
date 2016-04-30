@@ -72,12 +72,6 @@ func TestGetHighFives(t *testing.T) {
 	}
 }
 
-type RouteMatch struct {
-	Route   *Route
-	Handler http.Handler
-	Vars    map[string]string
-}
-
 func TestGetHighFive(t *testing.T) {
 	r, _ := http.NewRequest("GET", "http://localhost:8787/highFive/1", nil)
 	w := httptest.NewRecorder()
@@ -99,15 +93,6 @@ func TestDeleteHighFive(t *testing.T) {
 	m.HandleFunc("/highFive/{highFiveId}", DeleteHighFive)
 	m.ServeHTTP(w, r)
 
-	// highFiveUrl = fmt.Sprintf("%s/highFive/2", server.URL)
-	// reader = strings.NewReader("")
-	// request, err := http.NewRequest("DELETE", highFiveUrl, reader)
-	// if err != nil {
-	// 	t.Error(err)
-	// }
-
-	// w := httptest.NewRecorder()
-	// DeleteHighFive(w, request)
 	if w.Code != 204 {
 		t.Error("Success expected: ", w.Code)
 	}
