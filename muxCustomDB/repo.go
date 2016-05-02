@@ -25,6 +25,16 @@ func RepoFindHighFive(id int) HighFive {
 	return HighFive{}
 }
 
+func RepoFindHighFiveBySender(sender string) []HighFive {
+	filteredHighFives := []HighFive{}
+	for _, h := range highFives {
+		if h.Sender == sender {
+			filteredHighFives = append(filteredHighFives, h)
+		}
+	}
+	return filteredHighFives
+}
+
 // RepoCreateHighFive creates a new HighFive.
 func RepoCreateHighFive(h HighFive) HighFive {
 	currentId += 1

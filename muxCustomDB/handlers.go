@@ -13,11 +13,23 @@ import (
 
 // GetHigh5 returns all of the HighFive's in the database.
 func GetHighFives(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(highFives); err != nil {
+	err := r.ParseForm()
+	if err != nil {
 		panic(err)
 	}
+	sender := r.FormValue("sender")
+	if sender != "" {
+		if err := json.NewEncoder(w).Encode(RepoFindHighFiveBySender(sender)); err != nil {
+			panic(err)
+		}
+	} else {
+		if err := json.NewEncoder(w).Encode(highFives); err != nil {
+			panic(err)
+		}
+	}
+	
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
 }
 
 // GetHighFive returns the HighFive based on matching id.
